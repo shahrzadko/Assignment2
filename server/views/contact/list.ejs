@@ -1,0 +1,54 @@
+<!-- header -->
+<% include ../partials/header.ejs %>
+
+<!-- main navigation -->
+<% include ../partials/navbar.ejs %>
+
+<% if(title == "Contact List") { %>
+<main class="container">
+   <div class="row">
+      <div class="col-md-offset-1 col-md-10">
+         <h1><% title %></h1>
+         <% if((typeof displayName == 'string' && displayName)) {%> 
+
+            <a href="/contact-list/add" class="btn btn-primary" role="button">
+               <i class="fas fa-plus-circle"></i> Add a Contact </a>
+
+            <table class="table table-boardered table-striped table-hover">
+
+               <tr class="d-flex">
+                     <th class="text-center col-1">Name</th>
+                     <th class="text-center col-2">Contact Number</th>
+                     <th class="text-center col-4">Email</th>
+                     <th class="text-center col-2"></th>
+                     <th class="text-center col-2"></th>
+               </tr>
+            
+               <% for (let count = 0; count < ContactList.length; count++) { %>
+                  <tr class="d-flex">
+                     <td class="text-center col-1"><%= ContactList[count].contactName %></td>
+                     <td class="text-center col-2"><%= ContactList[count].contactNumber %></td>
+                     <td class="text-center col-4"><%= ContactList[count].emailAddress %></td>
+                     <td class="text-center col-2">
+                        <a href="/contact-list/edit/<%= ContactList[count]._id %>" class="btn btn-primary btn-sm" >
+                        <i class="fas fa-pencil-alt"></i> Edit </a>
+                     </td>
+                     <td class="text-center col-2">
+                        <a href="/contact-list/delete/<%= ContactList[count]._id %>" class="btn btn-danger btn-sm" >
+                        <i class="fas fa-trash-alt"></i> Delete</a>
+                     </td>
+                  </tr> 
+               <% } %>
+            </table> 
+         <% } else { %>
+            <p><h2> Sorry you are not logged in. Please log in first </h2></p>
+            <a href="./login" type="button" class="btn btn-primary"> Login </a>
+         <% } %>
+      </div>
+   </div>
+</main>
+
+<% } %>
+
+<!-- footer -->
+<% include ../partials/footer.ejs %>
