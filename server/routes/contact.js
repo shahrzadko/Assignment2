@@ -19,7 +19,7 @@ function requireAuth(req,res,next)
 }
 
 /* GET Route for the Contact List page - READ Operation */
-router.get('/', contactController.displayContactList)
+router.get('/', requireAuth, contactController.displayContactList)
 module.exports = router;
 
 /* GET Route for displaying the Add page -  CREAT Operation */

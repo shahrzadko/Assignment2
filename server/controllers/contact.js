@@ -61,7 +61,9 @@ module.exports.displayUpdatePage = (req,res,next)=>{
         else
         {
             //show the update view
-            res.render('contact/update', {title: 'Update Contact', contact : contactToUpdate,
+            res.render('contact/update', {title: 'Update Contact', 
+            contact : contactToUpdate,
+            deleteID : id,
             displayName: req.user ? req.user.displayName : ''})
         }
 
