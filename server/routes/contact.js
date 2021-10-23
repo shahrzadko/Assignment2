@@ -28,12 +28,12 @@ router.get('/add', requireAuth, contactController.displayAddPage);
 /* POST Route for processing the Add page -  CREAT Operation */
 router.post('/add', requireAuth, contactController.processAddPage);
 
-/* GET Route for displaying the Edit page -  UPDATE Operation */
-router.get('/edit/:id', requireAuth, contactController.displayEditPage);
+/* GET Route for displaying the Update page -  UPDATE Operation */
+router.get('/update/:id', requireAuth, contactController.displayUpdatePage);
 
 
-/* POST Route for processing the Edit page -  UPDATE Operation */
-router.post('/edit/:id', requireAuth, contactController.processEditPage);
+/* POST Route for processing the Update page -  UPDATE Operation */
+router.post('/update/:id', requireAuth, contactController.processUpdatePage);
 
 /* GET Route to perform deletion -  DELETE Operation */
 router.get('/delete/:id', requireAuth, contactController.performDelete)

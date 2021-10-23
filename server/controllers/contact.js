@@ -6,7 +6,7 @@ let mongoose = require('mongoose');
 let Contact = require('../models/contact');
 
 module.exports.displayContactList =(req, res, next) => {
-    Contact.find((err, contactList) => {
+    Contact.find({}).sort('contactName').exec((err, contactList) => {
         if(err)
         {
             return console.error(err);
@@ -48,11 +48,11 @@ module.exports.processAddPage = (req, res, next) => {
     })
 }
 
-module.exports.displayEditPage = (req,res,next)=>{
+module.exports.displayUpdatePage = (req,res,next)=>{
     let id = req.params.id;
 
 
-    Contact.findById(id, (err, contactToEdit) => {
+    Contact.findById(id, (err, contactToUpdate) => {
         if(err)
         {
             return console.error(err);
@@ -60,15 +60,15 @@ module.exports.displayEditPage = (req,res,next)=>{
         }
         else
         {
-            //show the edit view
-            res.render('contact/edit', {title: 'Edit Contact', contact : contactToEdit,
+            //show the update view
+            res.render('contact/update', {title: 'Update Contact', contact : contactToUpdate,
             displayName: req.user ? req.user.displayName : ''})
         }
 
     })
 }
 
-module.exports.processEditPage = (req,res,next)=>{
+module.exports.processUpdatePage = (req,res,next)=>{
     let id = req.params.id;
     let updatedContact = Contact ({
         "_id" : id,
